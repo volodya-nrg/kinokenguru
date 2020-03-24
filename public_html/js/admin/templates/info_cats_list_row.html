@@ -1,0 +1,21 @@
+<td align="center">
+	<%- id %>
+</td>
+<td align="left">
+	<% if(parent_ids.length){ %>
+		<% for(var i=0; i < parent_ids.length; i++){ %>
+			------
+		<% } %>
+	<% } %>
+	
+	<%- name %>
+</td>
+<td align="left">
+	<%- description %>
+</td>
+<td align="center">
+	<%- is_hide %>
+</td>
+<td align="center">
+	<a class="a-gray-md a-change-route" href="/admin/info-cats/<%- id %>/edit"><i class="fa fa-edit"></i></a>
+</td>

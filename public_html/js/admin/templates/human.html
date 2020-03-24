@@ -1,0 +1,72 @@
+<form onsubmit="return false;">
+	<table border="0" cellspacing="10" cellpadding="0" width="100%">
+		<tr>
+			<td class='text-muted' align="left" valign="top" width="200">
+				Картинка(и):
+			</td>
+			<td align="left">
+				<input class="my-input-file" type="file" name="images" multiple="multiple" />
+				<div class="img-thumbnails">
+					<% _.each(images, function(image, key){ %>
+						<div class="img-thumbnail img-thumbnail-sm">
+							<div class="img-thumbnail-close" data-img="<%- image %>"><i class="fa fa-close fa-fw"></i></div>									   
+							<img src="/images/sm_<%- image %>" />
+						</div>
+					<% }); %>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				ФИО (ru) *:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" name="fio_ru" value="<%- fio_ru %>" maxlength="255" />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				ФИО (на родном языке):
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" name="fio_original" value="<%- fio_original %>" maxlength="255" />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Дата рождения:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" name="birthday" value="<%- birthday %>" />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Страна:
+			</td>
+			<td align="left">
+				<select class="my-select" name="country_id">
+					<option value="0"></option>
+					<% _.each(window.app.col.countries.models, function(model, key){ %>
+						<% if(model.get('id') === country_id){ %>
+							<option selected value="<%- model.get('id') %>"><%- model.get('name') %></option>
+
+						<% } else { %>
+							<option value="<%- model.get('id') %>"><%- model.get('name') %></option>
+						<% } %>
+					<% }); %>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left" valign="top">
+				Описание:
+			</td>
+			<td align="left">
+				<textarea class="my-textarea textarea-block" name="about"><%- about %></textarea>
+			</td>
+		</tr>
+	</table>
+	<hr />	
+	<div id="btns-cud"></div>
+</form>

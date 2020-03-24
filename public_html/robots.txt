@@ -1,0 +1,14 @@
+User-agent: * 
+
+Disallow: /search
+Disallow: /your-ideas
+Disallow: /reg
+Disallow: /login
+Disallow: /infos
+Disallow: /flash/pl.swf
+
+Sitemap: http://kinokengu.ru/sitemap_products.xml
+
+User-agent: wget
+Disallow: /
+Crawl-delay: 10

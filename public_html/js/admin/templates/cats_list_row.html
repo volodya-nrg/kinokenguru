@@ -1,0 +1,18 @@
+<td align="center">
+	<%- id %>
+</td>
+<td align="left">
+	<%- slug %>
+</td>
+<td align="left">
+	<%- name %>
+</td>
+<td align="left">
+	<%- title %>
+</td>
+<td align="left">
+	<%- (description.length > 83? description.substring(0, 80) + "...": description) %>
+</td>
+<td align="center">
+	<a class="a-gray-md a-change-route" href="/admin/cats/<%- id %>/edit"><i class="fa fa-edit"></i></a>
+</td>

@@ -1,0 +1,1196 @@
+/* Sass Document */
+
+/* image proporties pattern - 407x540, 272x360, 300x169 */
+/* video proporties pattern - 1280x720 */
+
+/*
+ * z-index
+ *  afisha-items - 1-5
+ *	login-pop-up - 10
+ *  search-pop-up - 11
+ *  popUpModal - 12
+ */
+
+/* -------------- определим цвета -------------- */
+$color_gray_lg: #282828
+$color_gray_md: lighten($color_gray_lg, 5%)
+$color_gray_sm: lighten($color_gray_lg, 10%)
+$color_gray_xs: lighten($color_gray_lg, 15%)
+
+$color_orange_lg: lighten(orange, 15%)
+$color_orange_md: lighten($color_orange_lg, 5%)
+$color_orange_sm: lighten($color_orange_lg, 10%)
+$color_orange_xs: lighten($color_orange_lg, 15%)
+
+$color_white_lg: white
+$color_white_md: darken($color_white_lg, 20%)
+$color_white_sm: darken($color_white_lg, 40%)
+$color_white_xs: darken($color_white_lg, 60%)
+
+$margin_lg: 20px
+$margin_md: 10px
+$margin_sm: 5px
+
+$padding_lg: 20px
+$padding_md: 10px
+$padding_sm: 5px
+
+$font_family: RobotoRegular, Arial, Helvetica, sans-serif
+$font_size: 14px
+$border_radius: 3px
+$input_width: 200px
+$min_width: 350px
+
+@mixin input_disabled
+  background-color: $color_gray_sm
+  color: $color_white_sm
+  cursor: not-allowed
+
+@mixin button_disabled
+  cursor: not-allowed
+  color: $color_gray_sm
+  background-color: $color_gray_md
+  box-shadow: none
+
+@charset "UTF-8"
+@font-face
+  font-family: "RobotoRegular"
+  src: url("/fonts/Roboto/RobotoRegular/RobotoRegular.eot")
+  src: url("/fonts/Roboto/RobotoRegular/RobotoRegular.eot?#iefix") format("embedded-opentype"),
+  url("/fonts/Roboto/RobotoRegular/RobotoRegular.woff") format("woff"),
+  url("/fonts/Roboto/RobotoRegular/RobotoRegular.ttf") format("truetype")
+  font-style: normal
+  font-weight: normal
+
+/* -------------- tags -------------- */
+*
+  margin: 0
+  padding: 0
+  border: 0
+
+body
+  background-color: $color_gray_md
+  color: $color_white_md
+  font-size: $font_size
+  font-family: $font_family
+
+header, main, footer
+  margin: 0 auto
+  max-width: 1000px
+  min-width: $min_width
+  padding: $padding_lg
+
+header
+  position: relative
+  background-color: none
+  padding-top: 0
+  padding-bottom: 0
+
+main
+  background-color: $color_gray_lg
+  border-radius: $border_radius
+  min-height: 400px
+
+footer
+  background-color: none
+
+  & .as-tbl-100
+
+    & .as-tbl-cell
+      width: 33%
+      margin-bottom: $margin_md
+
+h1, h2, h3, h4, h5, h6
+  color: $color_white_lg
+
+a
+  color: $color_orange_lg
+  text-decoration: underline
+
+  &:hover
+    color: $color_orange_md
+    text-decoration: none
+
+nav
+  background-color: none
+
+  & ul
+    display: table
+    background-color: none
+    list-style: none
+
+    & li
+      float: left
+      margin-right: $margin_sm
+      position: relative
+
+      &:hover
+
+      &:last-child
+        margin-right: 0
+
+      & .a-top-menu
+        display: block
+        padding: $padding_sm $padding_md
+        background-color: $color_gray_xs
+        text-decoration: none
+        color: $color_white_md
+
+        &:hover
+          background-color: lighten($color_gray_xs, 5%)
+          color: lighten($color_white_md, 5%)
+
+        &.active
+          background-color: lighten($color_gray_xs, 5%)
+          color: $color_white_lg
+
+          &:hover
+            color: $color_white_lg
+
+ul, li
+  list-style-position: inside
+
+hr
+  width: 100%
+  color: $color_gray_md
+  background-color: $color_gray_md
+  height: 1px
+  clear: both
+  margin: $margin_md 0
+
+p
+  margin-bottom: $margin_md
+
+  &:first-letter
+    margin-left: $margin_md
+
+  &:last-childs
+    margin-bottom: 0
+
+iframe
+  background-color: black
+
+input[type=checkbox], input[type=radio]
+  cursor: pointer
+  background-color: $color_gray_xs
+
+  &[disabled]
+    cursor: not-allowed
+
+/* -------------- id's -------------- */
+#logo
+  position: absolute
+  top: 10px
+  left: calc((150px - 80px) / 2)
+  width: 80px
+  height: 80px
+  background-color: none
+  text-align: center
+  -webkit-transition: 0.5s;
+  /* Safari */
+  transition: 0.5s;
+
+  & > img
+    height: inherit
+    width: auto
+
+  &:hover
+    top: calc(10px - 6px / 2)
+    left: calc((150px - 80px) / 2 - 6px / 2)
+    width: calc(80px + 6px)
+    height: calc(80px + 6px)
+
+#slogan
+  position: absolute
+
+  & > .text-white
+    text-transform: uppercase
+
+#left-menu
+  width: 150px
+  background-color: none
+  padding: 0 $padding_md $padding_md 0
+  margin: 0 $margin_md 0 0
+  border-right: $color_gray_md solid 1px
+
+  & > strong
+    display: block
+    margin-bottom: $margin_sm
+
+  & ul
+    list-style-type: none
+
+    & li
+      & a
+        text-transform: capitalize
+
+#preloader
+  position: fixed
+  top: 10px
+  right: 10px
+  background-color: rgba(255, 255, 255, 0.1)
+  color: $color_white_md
+  padding: $padding_md
+  font-size: 20px
+  display: none
+
+#big-player
+  background-color: black
+  height: 390px
+  margin-top: 10px
+
+#flash-player
+  outline: none
+
+  & embed
+    outline: none
+
+#form-login
+
+  & input[name=email]
+    margin-bottom: $margin_sm
+
+#form-reg, #form-recover-pass, #form-set-new-pass
+  width: $min_width
+
+#form-profile-settings
+
+  & .img-thumbnail
+    margin: 0
+    width: 95px
+    height: 95px
+
+  .form-profile-settings-hidden-tr
+    display: none
+
+#form-subscribe
+
+  & .alert
+    display: none
+
+  & input[name=email]
+    float: left
+    width: 104px
+
+  & button
+    float: left
+    min-width: 36px
+
+#product-info
+  position: relative
+
+  & > .as-tbl-100
+
+    & > .pull-left:first-child
+      margin-right: $margin_lg
+      width: 397px
+
+    & > .pull-left:last-child
+      width: 583px
+
+#infos-tree
+  width: 200px
+  padding-right: $padding_md
+  border-right: $color_gray_sm solid 1px
+
+#bread-crumbs
+  display: table
+  width: 100%
+  list-style: none
+
+  & > li
+    float: left
+
+    &:after
+      content: '/'
+      color: $color_white_sm
+      padding: 0 $padding_sm
+
+    &:last-child
+
+      &:after
+        content: ''
+        padding: 0
+
+#like-wrapper
+  position: absolute
+  top: 10px
+  right: 0
+  background-color: none
+
+  & .fa
+    font-size: 24px
+
+  & .like-btn
+    cursor: pointer
+
+    &:hover
+      opacity: 0.8
+
+    &.active
+      color: $color_white_lg
+
+      &:hover
+        opacity: 1
+
+#comment-items
+  padding: $padding_md
+  border-bottom: $color_gray_sm solid 1px
+  margin-bottom: $margin_lg
+
+#a-my-favorites
+  position: absolute
+  top: 10px
+  right: 10px
+
+/* -------------- classes -------------- */
+.h1, .h2, .h3, .h4, .h5, .h6
+  color: $color_white_lg
+
+.h1, .h2, .h3, .h4, .h5, .h6
+  margin-bottom: $margin_md
+
+.h1
+  font-size: 29px
+
+.h2
+  font-size: 22px
+
+.h3
+  font-size: 17px
+
+.h4
+  font-size: 14.5px
+
+.h5
+  font-size: 12.2px
+
+.h6
+  font-size: 10px
+
+.pull-left
+  float: left
+
+.pull-right
+  float: right
+
+.as-tbl
+  display: table
+
+.as-tbl-100
+  display: table
+  width: 100%
+
+.as-tbl-cell
+  display: table-cell
+
+.as-inline
+  display: inline-block
+
+.text-muted
+  color: $color_white_sm
+
+.text-white
+  color: white
+
+.text-red
+  color: red
+
+.text-green
+  color: lightgreen
+
+.text-orange
+  color: orange
+
+.text-eclipse
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.activity
+  cursor: pointer
+  opacity: 0.7
+
+  &:hover
+    opacity: 1
+
+.list-unstyled
+  list-style-type: none
+
+.hide
+  display: none
+
+.margin-auto
+  margin: auto
+
+.hr-lighten
+  color: $color_gray_xs
+  background-color: $color_gray_xs
+
+.half-opacity
+  opacity: 0.5
+
+.is-relative
+  position: relative
+
+.btn-block
+  display: block
+  width: 100%
+
+.btn-float-width
+  min-width: auto
+
+.my-input
+  font-family: $font_family
+  font-size: $font_size
+  width: 200px
+  background-color: $color_gray_xs
+  color: $color_white_md
+  padding: $padding_sm
+  border-bottom: $color_gray_xs solid 1px
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2)
+
+  &[disabled]
+    @include input_disabled
+
+.my-input-file
+  width: 210px
+  background-color: $color_gray_xs
+  color: $color_white_md
+  border-bottom: $color_gray_xs solid 1px
+  height: 30px
+  line-height: 16px
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2)
+
+  &[disabled]
+    @include input_disabled
+
+.my-textarea
+  font-family: $font_family
+  font-size: $font_size
+  width: $min_width
+  background-color: $color_gray_xs
+  color: $color_white_md
+  padding: $padding_sm
+  border-bottom: $color_gray_xs solid 1px
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2)
+
+  &[disabled]
+    @include input_disabled
+
+/* после .my-textarea должен идти .textarea-block, чтобы не перекрывало значения */
+.textarea-block
+  width: 100%
+
+.my-btn
+  min-width: 100px
+  height: 30px
+  line-height: 16px
+  background-color: $color_gray_sm
+  color: $color_white_md
+  padding: $padding_sm
+  cursor: pointer
+  font-size: $font_size
+  border: $color_gray_xs solid 1px
+
+  &:hover
+    background-color: $color_gray_xs
+    color: $color_white_lg
+
+  &:active
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.7)
+
+  &[disabled], &[disabled]:hover, &[disabled]:active
+    @include button_disabled
+
+.my-select
+  width: 210px
+  height: 30px
+  font-family: $font_family
+  font-size: $font_size
+  color: $color_white_md
+  border-bottom: $color_gray_xs solid 1px
+  border-radius: 5px
+  /* по дефолту, как в других браузерах */
+  opacity: 1
+  padding: 0 $padding_sm
+  background: $color_gray_xs url(/img/select_arrow.png) right center no-repeat
+  appearance: none
+
+  & option
+    padding-left: 15px
+    background-color: #c3c3c3
+    /* по дефолту, как в других браузерах */
+    color: #101112
+  /* по дефолту, как в других браузерах */
+
+  &[disabled]
+    opacity: 0.5
+
+.table-zebra
+  width: 100%
+
+  & thead
+    & th
+      background-color: none
+      border-top: $color_gray_xs solid 1px
+      border-bottom: $color_gray_xs solid 1px
+      border-right: $color_gray_xs solid 1px
+      padding: $padding_sm
+
+      &:first-child
+        border-left: $color_gray_xs solid 1px
+
+  & tbody
+    & tr
+      & td
+        border-right: $color_gray_xs solid 1px
+        border-bottom: $color_gray_xs solid 1px
+        padding: $padding_sm
+
+        &:first-child
+          border-left: $color_gray_xs solid 1px
+
+      &:nth-child(odd)
+        background-color: lighten($color_gray_lg, 2%)
+
+.form-inline-items
+
+  & .form-inline-item
+    display: inline-block
+    margin-right: $margin_md
+
+    &:last-child
+      margin-right: 0
+
+.slick
+  background-color: $color_gray_sm
+  padding: $padding_md 0
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2)
+  border-bottom: $color_white_xs solid 1px
+
+.slick-list
+  margin: 0 30px
+
+.slick-prev
+  left: 5px
+
+.slick-next
+  right: 5px
+
+.slick-frame
+  cursor: pointer
+
+$prefix: '.a-gray'
+#{$prefix}-lg
+  color: $color_white_xs
+  text-decoration: underline
+
+  &:hover
+    color: $color_white_sm
+    text-decoration: none
+
+#{$prefix}-md
+  color: $color_white_sm
+  text-decoration: underline
+
+  &:hover
+    color: $color_white_md
+    text-decoration: none
+
+#{$prefix}-sm
+  color: $color_white_md
+  text-decoration: underline
+
+  &:hover
+    color: $color_white_lg
+    text-decoration: none
+
+a.a-reverse-line
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
+
+$prefix: '.afisha'
+#{$prefix}
+  position: relative
+  height: 398px
+  background-color: none
+  border: $color_gray_md dotted 0px
+
+  & #{$prefix}-item
+    position: absolute
+    top: 0
+    left: 0
+    width: 600px
+    height: inherit
+    overflow: hidden
+    background-color: lighten($color_gray_lg, 2%)
+    border: $color_gray_sm solid 1px
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.3)
+
+    &:hover
+      border: $color_white_sm solid 1px
+
+    &.active
+
+      &:hover
+        border: $color_gray_sm solid 1px
+
+      & #{$prefix}-item-cover
+        cursor: default
+
+    & #{$prefix}-item-content
+      width: 270px
+      float: left
+      margin-right: $margin_md
+      padding: $padding_md
+
+      & h3
+        color: $color_orange_sm
+
+    & #{$prefix}-item-cover
+      width: 300px
+      height: inherit
+      overflow: hidden
+      float: left
+      background-color: $color_gray_xs
+      cursor: pointer
+
+      & > img
+        width: 300px
+        height: 398px
+
+$prefix: '.spoiler'
+#{$prefix}
+  background-color: none
+
+  & #{$prefix}-wraper
+    height: 80px
+    overflow: hidden
+
+  & #{$prefix}-panel
+    position: relative
+    background-color: $color_gray_md
+    color: $color_white_xs
+    cursor: pointer
+    text-align: center
+    box-shadow: 0px -2px 1px rgba(0, 0, 0, 0.1)
+    height: 14px
+
+    &:hover
+      background-color: $color_gray_sm
+      color: $color_white_sm
+
+    & .fa
+      position: absolute
+      top: -1px
+      left: 50%
+
+$prefix: '.product-thumbnail'
+#{$prefix}-list
+  background-color: none
+  display: table
+
+#{$prefix}
+  display: inline-block
+  position: relative
+  width: 242px
+  margin: 0 $margin_md $margin_md 0
+  background-color: $color_gray_md
+  border-bottom: $color_gray_sm solid 1px
+
+  &:nth-child(4n)
+    margin-right: 0
+
+  &:nth-last-child(-n+4)
+    margin-bottom: 0
+
+  &:hover
+    background-color: $color_gray_sm
+
+  & #{$prefix}-cover
+    position: relative
+    display: block
+    width: inherit
+    height: 321px
+    overflow: hidden
+
+    &:hover #{$prefix}-title
+
+    & > img
+      width: 100%
+
+    & #{$prefix}-title
+      position: absolute
+      color: $color_white_lg
+      top: 0
+      left: 0
+      width: 222px
+      padding: $padding_md
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#00000000', GradientType=0)
+
+    & #{$prefix}-short-desc
+      position: absolute
+      bottom: 5px
+      left: 5px
+      width: 212px
+      height: 245px
+      overflow: hidden
+      background-color: rgba(0, 0, 0, 0.8)
+      color: $color_white_md
+      padding: $padding_md
+      display: none
+
+  & #{$prefix}-desc
+    padding: $padding_sm
+    background-color: none
+
+    & .fa-info-circle
+      cursor: default
+
+      &:hover
+        color: $color_white_lg
+
+$prefix: '.human-item'
+#{$prefix}
+  display: inline-block
+  width: 100px
+  vertical-align: top
+  background-color: none
+
+  & #{$prefix}-img
+    width: 100px
+    height: 133px
+    overflow: hidden
+    border: $color_gray_md solid 1px
+
+    & > img
+      width: 100%
+      height: auto
+
+  & #{$prefix}-name
+    line-height: 12px
+
+$prefix: '.img-thumbnail'
+#{$prefix}
+  position: relative
+  display: inline-block
+  width: 100px
+  height: 100px
+  margin: $margin_sm
+  padding: 2px
+  border: $color_gray_sm solid 1px
+  background-color: $color_gray_md
+
+  & > img
+    height: 100%
+
+  & #{$prefix}-close
+    position: absolute
+    top: 5px
+    right: 5px
+    width: 18px
+    height: 18px
+    line-height: 16px
+    background-color: $color_gray_lg
+    cursor: pointer
+    text-align: center
+    font-size: 12px
+
+    &:hover
+      background-color: $color_gray_md
+
+  &.img-thumbnail-sm
+    width: 50px
+    height: 50px
+    margin: 2px
+    padding: 1px
+
+    & #{$prefix}-close
+      top: 2px
+      right: 2px
+      width: 12px
+      height: 12px
+      line-height: 10px
+      font-size: 10px
+
+  &.img-thumbnail-md
+    width: 100px
+    height: 100px
+
+  &.img-thumbnail-lg
+    width: 150px
+    height: 150px
+
+$prefix: '.multiselect'
+#{$prefix}
+
+  & #{$prefix}-item
+    display: inline-block
+    margin-bottom: $margin_sm
+    background-color: $color_gray_md
+
+    & #{$prefix}-item-content
+      float: left
+      padding: $padding_sm $padding_md
+      border-right: $color_gray_sm dashed 1px
+
+    & #{$prefix}-item-close
+      float: left
+      padding: $padding_sm
+
+  & #{$prefix}-tpl
+    display: block
+    margin-bottom: $margin_sm
+
+    & #{$prefix}-tpl-tag
+      display: inline-block
+
+    & #{$prefix}-tpl-plus
+      display: inline-block
+      padding: $padding_sm
+
+    & #{$prefix}-tpl-minus
+      display: none
+      padding: $padding_sm
+
+    &#{$prefix} -tpl-is-new
+      margin-bottom: $margin_sm
+
+      & #{$prefix}-tpl-plus
+        display: none
+
+      & #{$prefix}-tpl-minus
+        display: inline-block
+
+$prefix: '.product-thumbnail-horiz'
+#{$prefix}
+  display: inline-block
+  width: 242px
+  margin: 0 $margin_md $margin_md 0
+  background-color: $color_gray_md
+  border-bottom: $color_gray_xs solid 1px
+
+  &:hover
+    border-bottom: $color_white_sm solid 1px
+
+  &:hover #{$prefix}-cover .fa
+    display: block
+
+  &:nth-child(4n)
+    margin: 0 0 $margin_md 0
+
+  & #{$prefix}-title
+    padding: $padding_sm $padding_md 7px
+
+  & #{$prefix}-cover
+    position: relative
+    width: inherit
+    height: 136px
+    overflow: hidden
+    background-color: $color_gray_sm
+
+    &:hover
+      cursor: pointer
+
+    & > img
+      width: auto
+      height: 136px
+
+    & #{$prefix}-cover-desc
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      color: $color_white_md
+      padding: $padding_sm $padding_md
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.33) 50%, rgba(0, 0, 0, 0.65) 100%)
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.33) 50%, rgba(0, 0, 0, 0.65) 100%)
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.33) 50%, rgba(0, 0, 0, 0.65) 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000', GradientType=0)
+
+    & .fa
+      position: absolute
+      top: 35px
+      left: 90px
+      display: none
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3)
+
+/* не переносить в другое место */
+.top-menu-pop-up-parent
+
+  & > a
+    cursor: default
+
+    &[href]
+      cursor: pointer
+
+$prefix: '.top-menu-pop-up'
+#{$prefix}
+  position: absolute
+  top: 29px
+  right: 0
+  min-width: 100px
+  display: none
+  padding: $padding_md
+  background-color: $color_gray_md
+  border: $color_gray_xs solid 1px
+  border-top: 0
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5)
+  z-index: 10
+
+$prefix: '.tabs'
+#{$prefix}
+  display: table
+
+  & #{$prefix}-panel
+    display: table
+    width: 100%
+
+    & #{$prefix}-panel-item
+      dislpay: block
+      float: left
+      background-color: $color_gray_sm
+      margin-right: $margin_sm
+      padding: 3px 6px
+      cursor: pointer
+      opacity: 0.8
+
+      &:hover
+        opacity: 1
+
+    & #{$prefix}-panel-item:last-child
+      margin-right: 0
+
+    & #{$prefix}-panel-item.active
+      background-color: $color_gray_xs
+      cursor: default
+      opacity: 1
+
+  & #{$prefix}-content
+    position: relative
+    background-color: $color_gray_sm
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2)
+    border-bottom: $color_white_xs solid 1px
+    padding: $padding_md $padding_md 6px $padding_md
+
+    & #{$prefix}-content-item
+      display: none
+
+    & #{$prefix}-content-item:first-child
+      display: block
+
+$prefix: '.form-top-search'
+#{$prefix}
+  position: relative
+  display: inline-table
+  background-color: none
+  white-space: nowrap
+
+  & #{$prefix}-input-block
+    display: inline-block
+    float: left
+    width: $min_width
+
+    & input[name=q]
+      width: inherit
+
+    & #{$prefix}-pop-up
+      position: absolute
+      top: 30px
+      left: 0
+      width: inherit
+      background-color: $color_gray_md
+      list-style: inside none
+      border: $color_gray_xs solid 1px
+      border-top: 0
+      display: none
+      z-index: 11
+      padding: $padding_sm 0
+
+      & > li
+        margin-bottom: $margin_sm
+        text-align: left
+        padding: 0 $padding_md
+
+  & button[type=submit]
+    float: left
+    min-width: 50px
+    border-bottom: $color_gray_xs solid 1px
+
+  & .fa-spin
+    position: absolute
+    top: 8px
+    left: -25px
+    display: none
+
+$prefix: '.comment-item'
+#{$prefix}
+  position: relative
+  margin-bottom: $margin_md
+  padding-left: 70px
+  padding-bottom: $padding_md
+  min-height: 50px
+  border-bottom: $color_gray_md solid 1px
+  background-color: none
+
+  &:last-child
+    margin-bottom: 0
+    border-bottom: 0
+    padding-bottom: 0
+
+  & #{$prefix}-avatar
+    position: absolute
+    top: 0
+    left: 0
+    width: 50px
+    height: 50px
+
+  & #{$prefix}-title
+    display: table
+    width: 100%
+    height: 20px
+    line-height: 20px
+    background-color: none
+    margin-bottom: $margin_sm
+    padding-bottom: $padding_sm
+    border-bottom: $color_gray_md dotted 1px
+
+    & small
+      position: relative
+      top: 3px
+      float: right
+
+    & #{$prefix}-remove
+      position: relative
+      top: 5px
+      margin-left: $margin_md
+      float: right
+
+  & #{$prefix}-text
+    background-color: none
+
+$prefix: '.folder-item'
+#{$prefix}
+  display: inline-block
+  vertical-align: top
+  width: 80px
+  margin: $margin_md
+  text-align: center
+  background-color: none
+
+  & #{$prefix}-cover
+    width: 100%
+    margin-bottom: 3px
+
+$prefix: '.ul-main-tree'
+#{$prefix}
+  list-style: none
+
+  & ul
+    list-style: none
+    display: none
+
+    &#{$prefix} -open
+      display: block
+
+    & li
+      border-left: $color_white_xs dashed 1px
+      padding-left: $padding_lg
+
+  & #{$prefix}-caret
+    margin-left: $margin_sm
+
+$prefix: '.modal'
+#{$prefix}
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  overflow-y: auto
+  background-color: rgba(0, 0, 0, 0.5)
+  display: none
+  z-index: 12
+
+  & #{$prefix}-wrapper
+    position: relative
+    padding: $padding_lg
+    margin: 100px auto $margin_lg auto
+    min-width: $min_width
+    max-width: 640px
+    background-color: $color_gray_lg
+    text-align: left
+
+    & #{$prefix}-wrapper-close
+      position: absolute
+      top: 10px
+      right: 10px
+
+#{$prefix}-sm
+
+  & #{$prefix}-wrapper
+    max-width: 400px
+
+$prefix: '.idea-item'
+#{$prefix}
+  position: relative
+  margin-bottom: $margin_md
+  padding-left: 60px
+  border-bottom: $color_gray_xs solid 1px
+  background-color: none
+
+  &:last-child
+
+  & #{$prefix}-status
+    position: absolute
+    top: 20px
+    left: 10px
+
+  & #{$prefix}-content
+
+  & #{$prefix}-info
+    margin-bottom: $margin_sm
+
+    & > small
+      float: right
+
+  & #{$prefix}-remove
+    margin-left: $margin_md
+    float: right
+
+  & #{$prefix}-idea
+    padding: 0 0 $padding_md 0
+    min-height: 25px
+
+  & #{$prefix}-answer
+    padding: $padding_md 0
+    border-top: $color_gray_sm dotted 1px
+
+/* -------------- admin -------------- */
+#admin header, #admin main, #admin footer
+  max-width: 1200px
+
+#admin-tbl-comments-product-name
+  max-width: 200px
+
+#admin
+  & .img-thumbnails
+    margin-top: $margin_sm
+    border: $color_gray_sm dashed 1px
+    padding: $padding_sm
+    min-height: 55px
+
+    & .img-thumbnail-sm
+      width: auto
+      margin: 0
+      margin-right: 3px
+      float: left
+
+      &:last-child
+        margin-right: 0

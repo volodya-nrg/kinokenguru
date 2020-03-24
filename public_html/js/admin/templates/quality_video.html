@@ -1,0 +1,22 @@
+<form onsubmit="return false;">
+	<table border="0" cellspacing="10" cellpadding="0" width="100%">
+		<tr>
+			<td class='text-muted' align="left" width="200">
+				Название *:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" name="name" value="<%- name %>" maxlength="255" />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left" valign="top">
+				Описание:
+			</td>
+			<td align="left">
+				<textarea class='my-textarea textarea-block' rows="5" name="description"><%- description %></textarea>
+			</td>
+		</tr>
+	</table>
+	<hr />	
+	<div id="btns-cud"></div>
+</form>

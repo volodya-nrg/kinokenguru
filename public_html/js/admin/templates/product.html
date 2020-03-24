@@ -1,0 +1,457 @@
+<form onsubmit="return false;">
+	<table border="0" cellspacing="10" cellpadding="0" width="100%">
+		<tr>
+			<td class='text-muted' align="left">
+				Путь к видео-файлу:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" name="video_file" value="" />
+				<small class="text-muted">public_path()/(путь к файлу)</small>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left" width="200">
+				<br />
+				Картинка(и):
+			</td>
+			<td align="left">
+				<input class="my-input-file" type="file" name="images" multiple="multiple" />
+				<div class="img-thumbnails">
+					<% _.each(images, function(image, key){ %>
+						<div class="img-thumbnail img-thumbnail-sm">
+							<div class="img-thumbnail-close img-thumbnail-close-thumb" data-img="<%- image %>">
+								<i class="fa fa-close fa-fw"></i>
+							</div>									   
+							<img src="/images/sm_<%- image %>" />
+						</div>
+					<% }); %>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Кадры из фильма:
+			</td>
+			<td align="left">
+				<div class="img-thumbnails">
+					<% _.each(frames, function(frame, key){ %>
+						<div class="img-thumbnail img-thumbnail-sm">
+							<div class="img-thumbnail-close img-thumbnail-close-frame" data-img="<%- frame %>">
+								<i class="fa fa-close fa-fw"></i>
+							</div>									   
+							<img src="/images/sm_<%- frame %>" />
+						</div>
+					<% }); %>
+				</div>
+			</td>
+		</tr>
+	</table>	
+	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+			<td align="left" valign="top" width="*">
+				<table border="0" cellspacing="10" cellpadding="0" width="100%">
+					<tr>
+						<td class='text-muted' align="left">
+							Название *:
+						</td>
+						<td align="left">
+							<input class="my-input" type="text" name="name" value="<%- name %>" maxlength="255" />
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Название (оригинал):
+						</td>
+						<td align="left">
+							<input class="my-input" type="text" name="name_original" value="<%- name_original %>" maxlength="255" />
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Год:
+						</td>
+						<td align="left">
+							<input class="my-input" type="text" name="year" value="<%- year %>" maxlength="4" />
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left" valign="top" width="200">
+							Страна:
+						</td>
+						<td align="left">
+							<div class="multiselect">
+								<%
+									// сделаем клон, чтоб работать с копией
+									var dublicatCol = window.app.col.countries.clone();
+								%>
+								<!-- покажем что уже выбранно -->
+								<% _.each(countries, function(item, key){ %>
+									<% 
+										var m = dublicatCol.get(item.id);
+										dublicatCol.remove(m); // удалим сразу ненужное
+									%>
+									<div class='multiselect-item'>
+										<input type="hidden" name="countries[]" value="<%- m.get('id') %>" />
+										<div class='multiselect-item-content'>
+											<%- m.get('name') %>
+										</div>
+										<div class='multiselect-item-close'>
+											<i class="fa fa-times-circle fa-fw activity"></i>
+										</div>
+									</div>
+								<% }); %>
+
+								<div id="contries-var-place" class="multiselect-var-place"></div>
+
+								<% if(dublicatCol.length){ %>
+									<div class="multiselect-tpl">
+										<div class="multiselect-tpl-tag">
+											<select class="my-select">
+												<option value="0"></option>
+												<% _.each(dublicatCol.models, function(model, key){ %>
+													<option value="<%- model.get('id') %>"><%- model.get('name') %></option>
+												<% }); %>
+											</select>
+										</div>
+										<div class='multiselect-tpl-plus'>
+											<i class="fa fa-plus-circle fa-fw activity"></i>
+										</div>
+										<div class='multiselect-tpl-minus'>
+											<i class="fa fa-times fa-fw activity"></i>
+										</div>
+									</div>
+								<% } %>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Слоган:
+						</td>
+						<td align="left">
+							<input class="my-input" type="text" name="slogan" value="<%- slogan %>" maxlength="255" />
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left" valign="top" width="200">
+							Категория *:
+						</td>
+						<td align="left">
+							<div class="multiselect">
+								<%
+									// сделаем клон, чтоб работать с копией
+									var dublicatCol = window.app.col.productCats.clone();
+								%>
+								<!-- покажем что уже выбранно -->
+								<% _.each(cats, function(item, key){ %>
+									<% 
+										var m = dublicatCol.get(item.id);
+										dublicatCol.remove(m); // удалим сразу ненужное
+									%>
+									<div class='multiselect-item'>
+										<input type="hidden" name="cats[]" value="<%- m.get('id') %>" />
+										<div class='multiselect-item-content'>
+											<%- m.get('name') %>
+										</div>
+										<div class='multiselect-item-close'>
+											<i class="fa fa-times-circle fa-fw activity"></i>
+										</div>
+									</div>
+								<% }); %>
+
+								<div id="cats-var-place" class="multiselect-var-place"></div>
+
+								<% if(dublicatCol.length){ %>
+									<div class="multiselect-tpl">
+										<div class="multiselect-tpl-tag">
+											<select class="my-select">
+												<option value="0"></option>
+												<% _.each(dublicatCol.models, function(model, key){ %>
+													<option value="<%- model.get('id') %>"><%- model.get('name') %></option>
+												<% }); %>
+											</select>
+										</div>
+										<div class='multiselect-tpl-plus'>
+											<i class="fa fa-plus-circle fa-fw activity"></i>
+										</div>
+										<div class='multiselect-tpl-minus'>
+											<i class="fa fa-times fa-fw activity"></i>
+										</div>
+									</div>
+								<% } %>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Бютжет:
+						</td>
+						<td align="left">
+							<input class="my-input" type="text" name="budget" value="<%- budget %>" maxlength="15" />
+							<small class="text-muted" >$</small>
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Возраст:
+						</td>
+						<td align="left">
+							<select class="my-select" name="old">
+								<option value=""></option>
+								<% for(var i=10; i < 21; i++){ %>
+									<% if(old === i+"+"){ %>
+										<option value="<%- i %>+" selected><%- i %>+</option>
+									
+									<% } else { %>
+										<option value="<%- i %>+"><%- i %>+</option>
+									<% } %>
+								<% } %>
+							</select>
+						</td>
+					</tr>
+				</table>	
+			</td>
+			<td width="10"></td>
+			<td align="left" valign="top" width="*">
+				<table border="0" cellspacing="10" cellpadding="0" width="100%">
+					<tr>
+						<td class='text-muted' align="left">
+							Ссылка *:
+						</td>
+						<td align="left">
+							<input class="my-input" type="text" name="link" value="<%- link %>" maxlength="255" />
+							<small class="text-muted" >ключ</small>
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Качество видео:
+						</td>
+						<td align="left">
+							<select class="my-select" name="quality_video_id">
+								<option value="0"></option>
+								<% _.each(window.app.col.qualityVideos.models, function(model, key){ %>
+									<% if(model.get('id') === quality_video_id){ %>
+										<option selected value="<%- model.get('id') %>"><%- model.get('name') %></option>
+									<% } else { %>
+										<option value="<%- model.get('id') %>"><%- model.get('name') %></option>
+									<% } %>
+								<% }); %>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Качество озвучивания:
+						</td>
+						<td align="left">
+							<select class="my-select" name="quality_dubbing_id">
+								<option value="0"></option>
+								<% _.each(window.app.col.qualityDubbings.models, function(model, key){ %>
+									<% if(model.get('id') === quality_dubbing_id){ %>
+										<option selected value="<%- model.get('id') %>"><%- model.get('name') %></option>
+									<% } else { %>
+										<option value="<%- model.get('id') %>"><%- model.get('name') %></option>
+									<% } %>
+								<% }); %>
+							</select>
+						</td>
+					</tr>
+					
+					<% if(slug !== ""){ %>
+						<tr>
+							<td class='text-muted' align="left">
+								Длительность:
+							</td>
+							<td align="left">
+								<input class="my-input" type="text" name="duration" value="<%- duration %>" maxlength="3" /> 
+								<small class="text-muted" >сек.</small>
+							</td>
+						</tr>
+					<% } %>
+					
+					<tr>
+						<td class='text-muted' align="left" valign="top">
+							Трейлер:
+						</td>
+						<td align="left">
+							<div class="multiselect">
+								<div id="trailers-var-place" class="multiselect-var-place">
+									<% _.each(trailers, function(trailer, key){ %>
+										<div class="multiselect-tpl multiselect-tpl-is-new">
+											<div class="multiselect-tpl-tag">
+												<input class="my-input" type="text" name="trailers[]" value="<%- trailer %>" maxlength="255" />
+											</div>
+											<div class='multiselect-tpl-plus'>
+												<i class="fa fa-plus-circle fa-fw activity"></i>
+											</div>
+											<div class='multiselect-tpl-minus'>
+												<i class="fa fa-times fa-fw activity"></i>
+											</div>
+										</div>
+									<% }); %>
+								</div>
+
+								<div class="multiselect-tpl">
+									<div class="multiselect-tpl-tag">
+										<input class="my-input" type="text" name="trailers[]" value=""  maxlength="255" />
+									</div>
+									<div class='multiselect-tpl-plus'>
+										<i class="fa fa-plus-circle fa-fw activity"></i>
+									</div>
+									<div class='multiselect-tpl-minus'>
+										<i class="fa fa-times fa-fw activity"></i>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left" valign="top">
+							Режиссер(ы):
+						</td>
+						<td align="left">
+							<div class="multiselect">
+								<%
+									// сделаем клон, чтоб работать с копией
+									var dublicatCol = window.app.col.humans.clone();
+								%>
+								<!-- покажем что уже выбранно -->
+								<% _.each(producers, function(item, key){ %>
+									<% 
+										var m = dublicatCol.get(item.id);
+										dublicatCol.remove(m); // удалим сразу ненужное
+									%>
+									<div class='multiselect-item'>
+										<input type="hidden" name="producers[]" value="<%- m.get('id') %>" />
+										<div class='multiselect-item-content'>
+											<%- m.get('fio_ru') %>
+										</div>
+										<div class='multiselect-item-close'>
+											<i class="fa fa-times-circle fa-fw activity"></i>
+										</div>
+									</div>
+								<% }); %>
+
+								<div id="producers-var-place" class="multiselect-var-place"></div>
+
+								<% if(dublicatCol.length){ %>
+									<div class="multiselect-tpl">
+										<div class="multiselect-tpl-tag">
+											<select class="my-select">
+												<option value="0"></option>
+												<% _.each(dublicatCol.models, function(model, key){ %>
+													<option value="<%- model.get('id') %>"><%- model.get('fio_ru') %></option>
+												<% }); %>
+											</select>
+										</div>
+										<div class='multiselect-tpl-plus'>
+											<i class="fa fa-plus-circle fa-fw activity"></i>
+										</div>
+										<div class='multiselect-tpl-minus'>
+											<i class="fa fa-times fa-fw activity"></i>
+										</div>
+									</div>
+								<% } %>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left" valign="top">
+							Актер(ы):
+						</td>
+						<td align="left">
+							<div class="multiselect">
+								<%
+									// сделаем клон, чтоб работать с копией
+									var dublicatCol = window.app.col.humans.clone();
+								%>
+								<!-- покажем что уже выбранно -->
+								<% _.each(actors, function(item, key){ %>
+									<% 
+										var m = dublicatCol.get(item.id);
+										dublicatCol.remove(m); // удалим сразу ненужное
+									%>
+									<div class='multiselect-item'>
+										<input type="hidden" name="actors[]" value="<%- m.get('id') %>" />
+										<div class='multiselect-item-content'>
+											<%- m.get('fio_ru') %>
+										</div>
+										<div class='multiselect-item-close'>
+											<i class="fa fa-times-circle fa-fw activity"></i>
+										</div>
+									</div>
+								<% }); %>
+
+								<div id="actors-var-place" class="multiselect-var-place"></div>
+
+								<% if(dublicatCol.length){ %>
+									<div class="multiselect-tpl">
+										<div class="multiselect-tpl-tag">
+											<select class="my-select">
+												<option value="0"></option>
+												<% _.each(dublicatCol.models, function(model, key){ %>
+													<option value="<%- model.get('id') %>"><%- model.get('fio_ru') %></option>
+												<% }); %>
+											</select>
+										</div>
+										<div class='multiselect-tpl-plus'>
+											<i class="fa fa-plus-circle fa-fw activity"></i>
+										</div>
+										<div class='multiselect-tpl-minus'>
+											<i class="fa fa-times fa-fw activity"></i>
+										</div>
+									</div>
+								<% } %>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Рейтинг КиноПоиск:
+						</td>
+						<td align="left">
+							<input class="my-input" type="text" name="rating_kinopoisk" value="<%- rating_kinopoisk %>" maxlength="5" />
+						</td>
+					</tr>
+					<tr>
+						<td class='text-muted' align="left">
+							Рейтинг IMDB:
+						</td>
+						<td align="left">
+							<input class="my-input" type="text" name="rating_imdb" value="<%- rating_imdb %>" maxlength="5" />
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellspacing="10" cellpadding="0" width="100%">
+		<tr>
+			<td class='text-muted' align="left" valign="top" width="200">
+				Описание:
+			</td>
+			<td align="left">
+				<textarea class="my-textarea textarea-block" name="description"><%- description %></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Скрыт:
+			</td>
+			<td align="left">
+				<input type="checkbox" name="is_hide" <%- is_hide == 1 ? 'checked': '' %> />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				В очереди:
+			</td>
+			<td align="left">
+				<input type="checkbox" name="in_queue" <%- in_queue == 1 ? 'checked': '' %> />
+			</td>
+		</tr>
+	</table>
+	<hr />	
+	<div id="btns-cud"></div>
+</form>

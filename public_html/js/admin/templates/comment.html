@@ -1,0 +1,59 @@
+<form onsubmit="return false;">
+	<table border="0" cellspacing="10" cellpadding="0" width="100%">
+		<tr>
+			<td class='text-muted' align="left">
+				Id профиля:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" value="<%- user_id %>" disabled />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Е-мэйл:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" value="<%- email %>" disabled />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				IP:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" value="<%- ip %>" disabled />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Дата создания:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" value="<%- created_at %>" disabled />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Имя:
+			</td>
+			<td align="left">
+				<% if(user_id != 0){ %>
+					<input class="my-input" type="text" value="<%- name %>" disabled />
+					
+				<% } else { %>
+					<input class="my-input" type="text" name="name" value="<%- name %>" />
+				<% } %>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left" valign="top" width="200">
+				Комментарий:
+			</td>
+			<td align="left">
+				<textarea class="my-textarea textarea-block" rows="5" name="description"><%- text %></textarea>
+			</td>
+		</tr>
+	</table>
+	<hr />	
+	<div id="btns-cud"></div>
+</form>

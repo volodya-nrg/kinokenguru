@@ -1,0 +1,90 @@
+<form onsubmit="return false;">
+	<table border="0" cellspacing="10" cellpadding="0" width="100%">
+		<% if(!modelIsNew){ %>
+			<tr>
+				<td class='text-muted' align="left" width="200">
+					Slug:
+				</td>
+				<td align="left">
+					<input class="my-input" type="text" disabled value="<%- slug %>" />
+				</td>
+			</tr>
+		<% } %>
+		<tr>
+			<td class='text-muted' align="left" width="200">
+				Заголовок *:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" name="title" value="<%- title %>" maxlength="255" />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				H1 *:
+			</td>
+			<td align="left">
+				<input class="my-input" type="text" name="h1" value="<%- h1 %>" maxlength="255" />
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Категория:
+			</td>
+			<td align="left">
+				<select class="my-select" name="cat_id">
+					<option value="0"></option>
+					<% _.each(window.app.col.infoCats.models, function(model, key){ %>
+						<% var prefix = ""; %>
+						
+						<% if(model.has('parent_ids') && model.get('parent_ids').length){ %>
+							<% for(var i=0; i < model.get('parent_ids').length; i++){ %>
+								<% prefix += "------"; %>
+							<% } %>
+						<% } %>
+					
+						<% if(model.get('id') === cat_id){ %>
+							<option selected value="<%- model.get('id') %>"><%- prefix + model.get('name') %></option>
+
+						<% } else { %>
+							<option value="<%- model.get('id') %>"><%- prefix + model.get('name') %></option>
+						<% } %>
+					<% }); %>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Meta keywords:
+			</td>
+			<td align="left">
+				<textarea class="my-textarea textarea-block" rows="2" name="meta_keywords"><%- meta_keywords %></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Meta desc:
+			</td>
+			<td align="left">
+				<textarea class="my-textarea textarea-block" rows="5" name="meta_desc"><%- meta_desc %></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left" valign="top">
+				Описание:
+			</td>
+			<td align="left">
+				<textarea class="my-textarea textarea-block" name="description"><%- description %></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td class='text-muted' align="left">
+				Скрыт:
+			</td>
+			<td align="left">
+				<input type="checkbox" name="is_hide" <%- is_hide === 1? 'checked': '' %> />
+			</td>
+		</tr>
+	</table>
+	<hr />	
+	<div id="btns-cud"></div>
+</form>

@@ -1,0 +1,26 @@
+<td align="center">
+	<%- id %>
+</td>
+<td align="left">
+	<%- name %> <small class="text-muted">(<%- year %>)</small>
+</td>
+<td align="left">
+	<%- link %>
+</td>
+<td align="left">
+	<% _.each(cats, function(el, index){ %>
+		<%- el.name %><% if(index !== cats.length-1){ %>, <% } %>
+	<% }); %>
+</td>
+<td align="center">
+	<%- in_queue %>
+</td>
+<td align="center">
+	<%- is_hide %>
+</td>
+<td align="center">
+	<font class="text-muted"><%- created_at %></font>
+</td>
+<td align="center">
+	<a class="a-gray-md a-change-route" href="/admin/products/<%- id %>/edit"><i class="fa fa-edit"></i></a>
+</td>
